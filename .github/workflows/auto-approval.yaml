@@ -1,0 +1,12 @@
+name: Auto Approval Action
+run-name: Checking if ${{ github.actor }}'s Pull Request should be Auto Approved ✅
+on: pull_request_target
+
+jobs:
+  auto-approve:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    if: github.actor == 'aaronbae2048'
+    steps:
+      - uses: hmarr/auto-approve-action@v4

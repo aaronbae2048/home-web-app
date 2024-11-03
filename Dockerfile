@@ -5,6 +5,7 @@ WORKDIR /app
 COPY app ./app
 
 COPY public ./public
+
 COPY .eslintrc.json next.config.mjs package.json postcss.config.js tailwind.config.ts tsconfig.json ./
 
 RUN npm install

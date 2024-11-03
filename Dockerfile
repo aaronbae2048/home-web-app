@@ -2,15 +2,16 @@ FROM node:21-alpine
 
 WORKDIR /app
 
-COPY package.json ./
+COPY app ./app
+
+COPY public ./public
+COPY .eslintrc.json next.config.mjs package.json postcss.config.js tailwind.config.ts tsconfig.json ./
 
 RUN npm install
 
 RUN npm run build
 
 ENV NODE_ENV=production
-
-COPY . .
 
 EXPOSE 3000
 

@@ -7,7 +7,20 @@ on:
   pull_request:
 
 jobs:
+  tag:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write  
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Tag
+        uses: phish108/autotag-action@v1.1.64
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN}}
   cd:
+    needs: tag
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write  
@@ -15,7 +28,7 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GHA_RELEASE_TOKEN }}
     steps:  
       - name: Checkout
-        uses: actions/checkout@v4   
+        uses: actions/checkout@v4
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -36,6 +49,7 @@ jobs:
           images: |
             aaronbae2048/home-web-app  
           tags: |
+            type=ref,event=tag
             type=ref,event=pr
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}

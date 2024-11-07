@@ -7,7 +7,18 @@ on:
   pull_request:
 
 jobs:
+  tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Tag
+        uses: phish108/autotag-action@v1.1.64
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN}}
   cd:
+    needs: tag
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write  
@@ -15,14 +26,7 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GHA_RELEASE_TOKEN }}
     steps:  
       - name: Checkout
-        uses: actions/checkout@v4   
-        
-      - name: Create a Release
-        uses: elgohr/Github-Release-Action@v5
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          title: "New Release"
+        uses: actions/checkout@v4
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3

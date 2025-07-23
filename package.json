@@ -9,6 +9,8 @@
     "build:something": "esbuild ./src/app.jsx --bundle --outfile=./target/out.js"
   },
   "devDependencies": {
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
     "code-inspector-plugin": "0.17.7",
     "esbuild": "0.24.0",
     "esbuild-plugin-sass": "1.0.1"

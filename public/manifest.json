@@ -1,6 +1,8 @@
 {
 	"short_name": "aaronbae",
 	"name": "AaronBae.com",
+	"default_locale": "en",
+	"description": "Welcome to AaronBae.com. Website is for purely entertainment and personal enjoyment only.",
 	"icons": [
 		{
 			"src": "favicon.ico",

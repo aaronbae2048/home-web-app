@@ -74,6 +74,7 @@ const start = async (port) => {
 		servedir: BUILD_DIRECTORY,
 		port: port,
 		onRequest: handleRequest,
+		fallback: './testing',
 	});
 };
 
@@ -97,7 +98,7 @@ const build = async () => {
 		logLevel: 'info',
 		entryPoints: [`${SOURCE_DIRECTORY}/${INDEX_FILE}`],
 		outfile: `${BUILD_DIRECTORY}/${OUTPUT_FILE}`,
-		format: 'cjs',
+		format: 'esm',
 		bundle: true,
 		minify: true,
 		sourcemap: true,

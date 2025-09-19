@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export default function App() {
+export default function HomePage() {
   return (
     <div>
       <div>Welcome to AaronBae.com</div>
